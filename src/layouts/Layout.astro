@@ -20,6 +20,324 @@ import '../styles/style.css';
 		<title>{title}</title>
 	</head>
 	<body>
+		<!-- Floating leaves effect -->
+		<div class="floating-leaves">
+			<div class="leaf">🍃</div>
+			<div class="leaf">🍂</div>
+			<div class="leaf">🌿</div>
+			<div class="leaf">🍃</div>
+			<div class="leaf">🍂</div>
+			<div class="leaf">🌿</div>
+		</div>
+		
 		<slot />
+		
+		<script>
+			// Enhanced touch and mouse interactions with wind effects
+			document.addEventListener('DOMContentLoaded', function() {
+				// Add touch response to cards
+				const cards = document.querySelectorAll('.services, .contact, .gallery, .testimonials');
+				const serviceItems = document.querySelectorAll('.service-card');
+				const hero = document.querySelector('.hero');
+				
+				// Create wind intensity based on mouse movement
+				let windIntensity = 0;
+				
+				// Card touch effects with wind response
+				cards.forEach(card => {
+					let isPressed = false;
+					
+					// Mouse/touch down
+					card.addEventListener('mousedown', () => {
+						isPressed = true;
+						card.style.transition = 'transform 0.1s ease';
+						// Add wind burst effect
+						createWindBurst(card);
+					});
+					
+					card.addEventListener('touchstart', (e) => {
+						e.preventDefault();
+						isPressed = true;
+						card.style.transition = 'transform 0.1s ease';
+						createWindBurst(card);
+					}, { passive: false });
+					
+					// Mouse/touch up
+					card.addEventListener('mouseup', () => {
+						if (isPressed) {
+							isPressed = false;
+							card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								card.style.transition = '';
+							}, 400);
+						}
+					});
+					
+					card.addEventListener('touchend', () => {
+						if (isPressed) {
+							isPressed = false;
+							card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								card.style.transition = '';
+							}, 400);
+						}
+					});
+					
+					// Mouse leave
+					card.addEventListener('mouseleave', () => {
+						if (isPressed) {
+							isPressed = false;
+							card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								card.style.transition = '';
+							}, 400);
+						}
+					});
+				});
+				
+				// Service card touch effects
+				serviceItems.forEach(item => {
+					let isPressed = false;
+					
+					item.addEventListener('mousedown', () => {
+						isPressed = true;
+						item.style.transition = 'transform 0.1s ease';
+						createWindBurst(item);
+					});
+					
+					item.addEventListener('touchstart', (e) => {
+						e.preventDefault();
+						isPressed = true;
+						item.style.transition = 'transform 0.1s ease';
+						createWindBurst(item);
+					}, { passive: false });
+					
+					item.addEventListener('mouseup', () => {
+						if (isPressed) {
+							isPressed = false;
+							item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								item.style.transition = '';
+							}, 400);
+						}
+					});
+					
+					item.addEventListener('touchend', () => {
+						if (isPressed) {
+							isPressed = false;
+							item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								item.style.transition = '';
+							}, 400);
+						}
+					});
+					
+					item.addEventListener('mouseleave', () => {
+						if (isPressed) {
+							isPressed = false;
+							item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+							setTimeout(() => {
+								item.style.transition = '';
+							}, 400);
+						}
+					});
+				});
+				
+				// Enhanced mouse movement effects for hero section with wind
+				if (hero) {
+					hero.addEventListener('mousemove', (e) => {
+						const rect = hero.getBoundingClientRect();
+						const x = e.clientX - rect.left;
+						const y = e.clientY - rect.top;
+						const centerX = rect.width / 2;
+						const centerY = rect.height / 2;
+						
+						const rotateX = (y - centerY) / centerY * 5;
+						const rotateY = (x - centerX) / centerX * 5;
+						
+						// Calculate wind intensity
+						windIntensity = Math.abs(rotateX) + Math.abs(rotateY);
+						
+						hero.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+						
+						// Affect nearby leaves
+						affectNearbyLeaves(x, y, windIntensity);
+					});
+					
+					hero.addEventListener('mouseleave', () => {
+						hero.style.transform = '';
+						windIntensity = 0;
+					});
+				}
+				
+				// Wind burst effect function
+				function createWindBurst(element) {
+					// Create temporary wind ripple
+					const windRipple = document.createElement('div');
+					windRipple.style.position = 'absolute';
+					windRipple.style.borderRadius = '50%';
+					windRipple.style.background = 'radial-gradient(circle, rgba(141, 198, 63, 0.2) 0%, transparent 70%)';
+					windRipple.style.transform = 'scale(0)';
+					windRipple.style.animation = 'windRipple 0.8s linear';
+					windRipple.style.left = '50%';
+					windRipple.style.top = '50%';
+					windRipple.style.width = '100px';
+					windRipple.style.height = '100px';
+					windRipple.style.marginLeft = '-50px';
+					windRipple.style.marginTop = '-50px';
+					windRipple.style.pointerEvents = 'none';
+					windRipple.style.zIndex = '1';
+					
+					element.style.position = 'relative';
+					element.appendChild(windRipple);
+					
+					// Add wind ripple animation
+					const style = document.createElement('style');
+					style.textContent = `
+						@keyframes windRipple {
+							0% {
+								transform: scale(0) rotate(0deg);
+								opacity: 1;
+							}
+							100% {
+								transform: scale(3) rotate(180deg);
+								opacity: 0;
+							}
+						}
+					`;
+					document.head.appendChild(style);
+					
+					setTimeout(() => {
+						windRipple.remove();
+						style.remove();
+					}, 800);
+				}
+				
+				// Affect nearby leaves function
+				function affectNearbyLeaves(mouseX, mouseY, intensity) {
+					const leaves = document.querySelectorAll('.leaf');
+					leaves.forEach(leaf => {
+						const rect = leaf.getBoundingClientRect();
+						const leafX = rect.left + rect.width / 2;
+						const leafY = rect.top + rect.height / 2;
+						
+						const distance = Math.sqrt(Math.pow(mouseX - leafX, 2) + Math.pow(mouseY - leafY, 2));
+						
+						if (distance < 200) {
+							const force = Math.max(0, (200 - distance) / 200) * intensity;
+							const angle = Math.atan2(leafY - mouseY, leafX - mouseX);
+							const pushX = Math.cos(angle) * force * 2;
+							const pushY = Math.sin(angle) * force * 2;
+							
+							leaf.style.transform = `translate(${pushX}px, ${pushY}px) rotate(${force * 10}deg)`;
+							
+							setTimeout(() => {
+								leaf.style.transform = '';
+							}, 300);
+						}
+					});
+				}
+				
+				// Enhanced parallax effect with wind simulation
+				window.addEventListener('scroll', () => {
+					const scrolled = window.pageYOffset;
+					const speed = scrolled * 0.5;
+					
+					// Update CSS custom properties for wind effects
+					document.documentElement.style.setProperty('--scroll', scrolled + 'px');
+					document.documentElement.style.setProperty('--wind-intensity', windIntensity.toString());
+					
+					// Add scroll-based wind effect
+					const scrollWindIntensity = Math.min(scrolled / 100, 5);
+					document.documentElement.style.setProperty('--scroll-wind', scrollWindIntensity.toString());
+				});
+				
+				// Enhanced magnetic effect for buttons with wind
+				const buttons = document.querySelectorAll('.button');
+				buttons.forEach(button => {
+					button.addEventListener('mousemove', (e) => {
+						const rect = button.getBoundingClientRect();
+						const x = e.clientX - rect.left;
+						const y = e.clientY - rect.top;
+						const centerX = rect.width / 2;
+						const centerY = rect.height / 2;
+						
+						const deltaX = (x - centerX) * 0.3;
+						const deltaY = (y - centerY) * 0.3;
+						
+						button.style.transform = `translateX(${deltaX}px) translateY(${deltaY}px) translateY(-3px) scale(1.05) rotate(${deltaX * 0.1}deg)`;
+					});
+					
+					button.addEventListener('mouseleave', () => {
+						button.style.transform = '';
+					});
+				});
+				
+				// Enhanced contact info click effects
+				const contactPhone = document.querySelector('.contact p:nth-of-type(3)');
+				const contactEmail = document.querySelector('.contact p:nth-of-type(4)');
+				
+				if (contactPhone) {
+					contactPhone.addEventListener('click', () => {
+						createWindBurst(contactPhone);
+						
+						// Try to initiate phone call on mobile
+						if (window.innerWidth <= 768) {
+							window.location.href = 'tel:8046010194';
+						}
+					});
+				}
+				
+				if (contactEmail) {
+					contactEmail.addEventListener('click', () => {
+						createWindBurst(contactEmail);
+						
+						// Open email client
+						window.location.href = 'mailto:m.r.saweikis@gmail.com';
+					});
+				}
+				
+				// Add random wind gusts
+				function createRandomWindGust() {
+					const intensity = Math.random() * 3 + 1;
+					const duration = Math.random() * 2000 + 1000;
+					
+					document.documentElement.style.setProperty('--random-wind', intensity.toString());
+					
+					setTimeout(() => {
+						document.documentElement.style.setProperty('--random-wind', '0');
+					}, duration);
+				}
+				
+				// Create random wind gusts every 5-15 seconds
+				setInterval(createRandomWindGust, Math.random() * 10000 + 5000);
+				
+				// Add random floating animation delays to prevent sync
+				const floatingElements = document.querySelectorAll('.service-card, .testimonial, .gallery-item');
+				floatingElements.forEach((el, index) => {
+					const randomDelay = Math.random() * 3;
+					const randomDuration = Math.random() * 5 + 10; // 10-15 seconds
+					el.style.animationDelay = `${randomDelay}s`;
+					el.style.animationDuration = `${randomDuration}s`;
+				});
+				
+				// Performance optimization: throttle mouse events
+				function throttle(func, limit) {
+					let inThrottle;
+					return function() {
+						const args = arguments;
+						const context = this;
+						if (!inThrottle) {
+							func.apply(context, args);
+							inThrottle = true;
+							setTimeout(() => inThrottle = false, limit);
+						}
+					}
+				}
+				
+				// Initialize wind system
+				createRandomWindGust();
+			});
+		</script>
 	</body>
 </html>

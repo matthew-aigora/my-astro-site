@@ -1,0 +1,517 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Request Free Estimate | Matthew's Yard Services | Midlothian, VA">
+  <main class="container">
+    <div class="estimate-hero">
+      <h1>Request Your Free Estimate</h1>
+      <p>Get a detailed, no-obligation estimate for your landscape maintenance needs. We'll provide a comprehensive quote within 24 hours.</p>
+    </div>
+
+    <div class="estimate-form-container">
+      <div class="form-intro">
+        <h2>Tell Us About Your Project</h2>
+        <p>Please provide as much detail as possible so we can give you the most accurate estimate. All fields marked with * are required.</p>
+      </div>
+
+      <form class="estimate-form" method="POST" action="/submit-estimate" netlify>
+        <div class="form-section">
+          <h3>Contact Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Property Information</h3>
+          <div class="form-group">
+            <label for="propertyAddress">Property Address *</label>
+            <input type="text" id="propertyAddress" name="propertyAddress" placeholder="Street Address" required>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" value="Midlothian" required>
+            </div>
+            <div class="form-group">
+              <label for="state">State *</label>
+              <input type="text" id="state" name="state" value="VA" required>
+            </div>
+            <div class="form-group">
+              <label for="zipCode">ZIP Code *</label>
+              <input type="text" id="zipCode" name="zipCode" required>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="propertyType">Property Type *</label>
+              <select id="propertyType" name="propertyType" required>
+                <option value="">Select Property Type</option>
+                <option value="residential">Residential Home</option>
+                <option value="commercial">Commercial Property</option>
+                <option value="townhome">Townhome/Condo</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="propertySize">Approximate Lot Size</label>
+              <select id="propertySize" name="propertySize">
+                <option value="">Select Lot Size</option>
+                <option value="small">Small (under 0.25 acres)</option>
+                <option value="medium">Medium (0.25 - 0.5 acres)</option>
+                <option value="large">Large (0.5 - 1 acre)</option>
+                <option value="xlarge">Extra Large (1+ acres)</option>
+                <option value="unknown">Not Sure</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Services Needed</h3>
+          <p class="section-description">Please check all services you're interested in:</p>
+          
+          <div class="checkbox-grid">
+            <div class="checkbox-group">
+              <input type="checkbox" id="mowing" name="services" value="Lawn Mowing & Maintenance">
+              <label for="mowing">🌱 Lawn Mowing & Maintenance</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="landscaping" name="services" value="Landscape Bed Maintenance">
+              <label for="landscaping">🌿 Landscape Bed Maintenance</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="mulching" name="services" value="Mulching & Soil Enhancement">
+              <label for="mulching">🌳 Mulching & Soil Enhancement</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="cleanup" name="services" value="Seasonal Property Cleanup">
+              <label for="cleanup">🍂 Seasonal Property Cleanup</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="trimming" name="services" value="Shrub & Tree Trimming">
+              <label for="trimming">✂️ Shrub & Tree Trimming</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="other-service" name="services" value="Other Services">
+              <label for="other-service">🔧 Other Services</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Service Frequency</h3>
+          <div class="radio-group">
+            <input type="radio" id="weekly" name="frequency" value="Weekly">
+            <label for="weekly">Weekly</label>
+            
+            <input type="radio" id="biweekly" name="frequency" value="Bi-weekly">
+            <label for="biweekly">Bi-weekly (Every 2 weeks)</label>
+            
+            <input type="radio" id="monthly" name="frequency" value="Monthly">
+            <label for="monthly">Monthly</label>
+            
+            <input type="radio" id="seasonal" name="frequency" value="Seasonal">
+            <label for="seasonal">Seasonal (Spring/Fall only)</label>
+            
+            <input type="radio" id="onetime" name="frequency" value="One-time">
+            <label for="onetime">One-time service</label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Additional Details</h3>
+          <div class="form-group">
+            <label for="timeline">When would you like to start? *</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select Timeline</option>
+              <option value="asap">As soon as possible</option>
+              <option value="1week">Within 1 week</option>
+              <option value="2weeks">Within 2 weeks</option>
+              <option value="1month">Within 1 month</option>
+              <option value="planning">Just planning ahead</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">Estimated Budget Range (Optional)</label>
+            <select id="budget" name="budget">
+              <option value="">Select Budget Range</option>
+              <option value="under-100">Under $100/month</option>
+              <option value="100-200">$100-200/month</option>
+              <option value="200-300">$200-300/month</option>
+              <option value="300-500">$300-500/month</option>
+              <option value="500-plus">$500+/month</option>
+              <option value="onetime-under-500">One-time: Under $500</option>
+              <option value="onetime-500-1000">One-time: $500-1000</option>
+              <option value="onetime-1000-plus">One-time: $1000+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="details">Project Details & Special Requirements</label>
+            <textarea id="details" name="details" rows="5" placeholder="Please describe your specific needs, any special requirements, problem areas, or questions you have about your property..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="hearAbout">How did you hear about us?</label>
+            <select id="hearAbout" name="hearAbout">
+              <option value="">Select Source</option>
+              <option value="google">Google Search</option>
+              <option value="referral">Friend/Neighbor Referral</option>
+              <option value="facebook">Facebook</option>
+              <option value="nextdoor">Nextdoor</option>
+              <option value="yard-sign">Saw our yard sign</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-group checkbox-group agreement">
+            <input type="checkbox" id="agreement" name="agreement" required>
+            <label for="agreement">I agree to be contacted by Matthew's Yard Services regarding this estimate request. *</label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-button">Submit Estimate Request</button>
+          <p class="form-note">We'll review your request and contact you within 24 hours with a detailed estimate.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="estimate-info">
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>📋 What Happens Next?</h3>
+          <ul>
+            <li>We'll review your request within 24 hours</li>
+            <li>Schedule a brief property visit if needed</li>
+            <li>Provide detailed written estimate</li>
+            <li>Answer any questions you have</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>📞 Prefer to Call?</h3>
+          <p>You can also reach us directly:</p>
+          <p><strong>Phone:</strong> (804) 601-0194</p>
+          <p><strong>Email:</strong> m.r.saweikis@gmail.com</p>
+          <p><strong>Hours:</strong> Mon-Sat, 7AM-6PM</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .estimate-hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1a4b3a 0%, #2d5a47 30%, #3e6b56 100%);
+    border-radius: 16px;
+    margin-bottom: 3rem;
+    color: white;
+  }
+
+  .estimate-hero h1 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .estimate-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .estimate-form-container {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 3rem;
+    border-radius: 16px;
+    margin-bottom: 3rem;
+    box-shadow: 0 15px 50px rgba(26, 75, 58, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.1);
+  }
+
+  .form-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .form-intro h2 {
+    color: #1a4b3a;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .form-intro p {
+    color: #4a5568;
+    font-size: 1.1rem;
+  }
+
+  .estimate-form {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .form-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(46, 204, 113, 0.1);
+  }
+
+  .form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2rem;
+  }
+
+  .form-section h3 {
+    color: #1a4b3a;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .section-description {
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #1a4b3a;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid rgba(46, 204, 113, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+    background: white;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8fcf9 0%, #f0f9f2 100%);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .checkbox-group:hover {
+    border-color: rgba(39, 174, 96, 0.3);
+    background: linear-gradient(135deg, #f0fff4 0%, #e8f8eb 100%);
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.75rem;
+    transform: scale(1.2);
+  }
+
+  .checkbox-group label {
+    margin: 0;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .radio-group input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #f8fcf9 0%, #f0f9f2 100%);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .radio-group label:hover {
+    border-color: rgba(39, 174, 96, 0.3);
+    background: linear-gradient(135deg, #f0fff4 0%, #e8f8eb 100%);
+  }
+
+  .agreement {
+    background: rgba(39, 174, 96, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+  }
+
+  .form-actions {
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .submit-button {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 50%, #1e8449 100%);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(39, 174, 96, 0.6);
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #229954 100%);
+  }
+
+  .form-note {
+    margin-top: 1rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+  }
+
+  .estimate-info {
+    margin-bottom: 3rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .info-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(26, 75, 58, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.1);
+  }
+
+  .info-card h3 {
+    color: #1a4b3a;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card li {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .info-card li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+  }
+
+  .info-card p {
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card strong {
+    color: #27ae60;
+  }
+
+  @media (max-width: 768px) {
+    .estimate-form-container {
+      padding: 2rem;
+    }
+    
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .checkbox-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .radio-group {
+      grid-template-columns: 1fr;
+    }
+    
+    .submit-button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+  }
+</style> 
