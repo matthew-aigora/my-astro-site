@@ -36,9 +36,9 @@ import '../styles/style.css';
 			// Enhanced touch and mouse interactions with wind effects
 			document.addEventListener('DOMContentLoaded', function() {
 				// Add touch response to cards
-				const cards = document.querySelectorAll('.services, .contact, .gallery, .testimonials');
-				const serviceItems = document.querySelectorAll('.service-card');
-				const hero = document.querySelector('.hero');
+				const cards = document.querySelectorAll('.services, .contact, .gallery, .testimonials') as NodeListOf<HTMLElement>;
+				const serviceItems = document.querySelectorAll('.service-card') as NodeListOf<HTMLElement>;
+				const hero = document.querySelector('.hero') as HTMLElement;
 				
 				// Create wind intensity based on mouse movement
 				let windIntensity = 0;
@@ -145,7 +145,7 @@ import '../styles/style.css';
 				
 				// Enhanced mouse movement effects for hero section with wind
 				if (hero) {
-					hero.addEventListener('mousemove', (e) => {
+					hero.addEventListener('mousemove', (e: MouseEvent) => {
 						const rect = hero.getBoundingClientRect();
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
@@ -171,7 +171,7 @@ import '../styles/style.css';
 				}
 				
 				// Wind burst effect function
-				function createWindBurst(element) {
+				function createWindBurst(element: HTMLElement) {
 					// Create temporary wind ripple
 					const windRipple = document.createElement('div');
 					windRipple.style.position = 'absolute';
@@ -214,8 +214,8 @@ import '../styles/style.css';
 				}
 				
 				// Affect nearby leaves function
-				function affectNearbyLeaves(mouseX, mouseY, intensity) {
-					const leaves = document.querySelectorAll('.leaf');
+				function affectNearbyLeaves(mouseX: number, mouseY: number, intensity: number) {
+					const leaves = document.querySelectorAll('.leaf') as NodeListOf<HTMLElement>;
 					leaves.forEach(leaf => {
 						const rect = leaf.getBoundingClientRect();
 						const leafX = rect.left + rect.width / 2;
@@ -253,9 +253,9 @@ import '../styles/style.css';
 				});
 				
 				// Enhanced magnetic effect for buttons with wind
-				const buttons = document.querySelectorAll('.button');
+				const buttons = document.querySelectorAll('.button') as NodeListOf<HTMLElement>;
 				buttons.forEach(button => {
-					button.addEventListener('mousemove', (e) => {
+					button.addEventListener('mousemove', (e: MouseEvent) => {
 						const rect = button.getBoundingClientRect();
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
@@ -274,8 +274,8 @@ import '../styles/style.css';
 				});
 				
 				// Enhanced contact info click effects
-				const contactPhone = document.querySelector('.contact p:nth-of-type(3)');
-				const contactEmail = document.querySelector('.contact p:nth-of-type(4)');
+				const contactPhone = document.querySelector('.contact p:nth-of-type(3)') as HTMLElement;
+				const contactEmail = document.querySelector('.contact p:nth-of-type(4)') as HTMLElement;
 				
 				if (contactPhone) {
 					contactPhone.addEventListener('click', () => {
@@ -313,7 +313,7 @@ import '../styles/style.css';
 				setInterval(createRandomWindGust, Math.random() * 10000 + 5000);
 				
 				// Add random floating animation delays to prevent sync
-				const floatingElements = document.querySelectorAll('.service-card, .testimonial, .gallery-item');
+				const floatingElements = document.querySelectorAll('.service-card, .testimonial, .gallery-item') as NodeListOf<HTMLElement>;
 				floatingElements.forEach((el, index) => {
 					const randomDelay = Math.random() * 3;
 					const randomDuration = Math.random() * 5 + 10; // 10-15 seconds
