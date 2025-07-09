@@ -1,0 +1,86 @@
+/* 
+  Tailwind CSS Examples for Matthew's Yard Services
+  
+  This file shows examples of how to use your custom Tailwind colors and utilities.
+  You can copy these classes directly into your HTML/Astro components.
+*/
+
+/* Example Color Classes - You can use these in your HTML */
+
+/* Primary Color Palette (Forest Green) */
+.bg-primary { background-color: #0C743D; } /* Main forest green */
+.bg-primary-light { background-color: #10A142; } /* Hover states */
+.bg-primary-dark { background-color: #085C30; } /* Active/pressed states */
+.text-primary { color: #0C743D; }
+.text-primary-light { color: #10A142; }
+.text-primary-dark { color: #085C30; }
+
+/* Secondary & Accent Colors */
+.bg-secondary { background-color: #7D7E75; } /* Mid-gray for secondary text/borders */
+.bg-accent { background-color: #CFD6EA; } /* Light lavender-gray for highlights */
+.text-secondary { color: #7D7E75; }
+.text-accent { color: #CFD6EA; }
+
+/* Neutral Colors */
+.bg-neutral-light { background-color: #B0B2B8; } /* Lighter gray */
+.bg-neutral-dark { background-color: #251E18; } /* Dark charcoal for text/headers */
+.text-neutral-light { color: #B0B2B8; }
+.text-neutral-dark { color: #251E18; }
+
+/* Background */
+.bg-background { background-color: #F8F9FA; } /* Clean off-white for main page */
+
+/* Example Component Classes */
+.hero-gradient {
+  background: linear-gradient(135deg, theme('colors.primary.dark') 0%, theme('colors.primary.DEFAULT') 50%, theme('colors.primary.light') 100%);
+}
+
+.service-card-gradient {
+  background: linear-gradient(135deg, theme('colors.background') 0%, theme('colors.accent') 100%);
+}
+
+.button-gradient {
+  background: linear-gradient(135deg, theme('colors.primary.DEFAULT') 0%, theme('colors.primary.light') 100%);
+}
+
+.card-shadow {
+  box-shadow: theme('boxShadow.professional');
+}
+
+.primary-shadow {
+  box-shadow: theme('boxShadow.primary');
+}
+
+/* Example Usage in HTML/Astro:
+
+<!-- Hero Section -->
+<div class="bg-primary text-white p-8 rounded-lg shadow-professional">
+  <h1 class="text-3xl font-bold mb-4">Matthew's Yard Services</h1>
+  <p class="text-lg opacity-90">Professional lawn care in Midlothian, VA</p>
+</div>
+
+<!-- Primary Button -->
+<div class="bg-primary hover:bg-primary-light active:bg-primary-dark text-white px-6 py-3 rounded-full transition-colors shadow-primary">
+  Get Free Estimate
+</div>
+
+<!-- Service Card -->
+<div class="bg-background border-l-4 border-primary p-6 rounded-lg shadow-accent">
+  <h3 class="text-neutral-dark font-semibold mb-2">Lawn Mowing</h3>
+  <p class="text-secondary">Professional lawn maintenance services</p>
+</div>
+
+<!-- Accent Card -->
+<div class="bg-accent text-neutral-dark p-4 rounded-lg">
+  <p class="text-sm">Special offer for new customers!</p>
+</div>
+
+<!-- Secondary Text -->
+<p class="text-secondary text-sm">Call us today for a free consultation</p>
+
+<!-- Clean Background -->
+<body class="bg-background">
+  <!-- Your content here -->
+</body>
+
+*/ 
